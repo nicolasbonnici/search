@@ -26,8 +26,9 @@ class HomeController extends \Library\Core\Controller {
 
     public function processAction()
     {
+        $this->_view['iMaxLoadCount'] = 250;
         if (isset($this->_params['parameters']) && !empty($this->_params['parameters'])) {
-            $oSearchModel = new \bundles\search\Models\Search($this->_params['parameters']);
+            $oSearchModel = new \bundles\search\Models\Search($this->_params['parameters'], array(), array(0, $this->_view['iMaxLoadCount']));
             $this->_view['aResults'] = $oSearchModel->getResults();
         }
 
