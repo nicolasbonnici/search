@@ -9,7 +9,7 @@ namespace bundles\search\Controllers;
  *
  * @author niko <nicolasbonnici@gmail.com>
  */
-class HomeController extends \Library\Core\Controller {
+class HomeController extends SearchController {
 
     /**
      * @todo defined class constant pour http error codes
@@ -28,12 +28,10 @@ class HomeController extends \Library\Core\Controller {
     {
         $this->_view['iMaxLoadCount'] = 250;
         if (isset($this->_params['parameters']) && !empty($this->_params['parameters'])) {
-            $oSearchModel = new \bundles\search\Models\Search($this->_params['parameters'], array(), array(0, $this->_view['iMaxLoadCount']));
-            $this->_view['aResults'] = $oSearchModel->getResults();
+            $this->process($this->_params['parameters'], 256);
         }
 
         $this->render('home/process.tpl');
-
     }
 
 }
