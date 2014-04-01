@@ -27,11 +27,11 @@ class SearchController extends \Library\Core\Controller
         if (isset($sParameters) && ! empty($sParameters)) {
             $oSearchModel = new \bundles\search\Models\Search($sParameters, array(), array(
                 0,
-                $this->_view['iMaxLoadCount']
+                $iMaxDepth
             ), null, null);
             $this->_view['aResults'] = $oSearchModel->getResults();
         }
-        
+
         $this->render('home/process.tpl');
     }
 }

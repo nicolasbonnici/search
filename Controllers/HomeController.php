@@ -26,13 +26,13 @@ class HomeController extends SearchController
         $this->render('home/index.tpl');
     }
 
-    public function processAction()
+    public function processAction($iMaxDepth = 99)
     {
-        $this->_view['iMaxLoadCount'] = 250;
+        $this->_view['iMaxLoadCount'] = $iMaxDepth;
         if (isset($this->_params['parameters']) && ! empty($this->_params['parameters'])) {
-            $this->process($this->_params['parameters'], 256);
+            $this->process($this->_params['parameters'], $iMaxDepth);
         }
-        
+
         $this->render('home/process.tpl');
     }
 }
