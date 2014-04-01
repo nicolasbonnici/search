@@ -1,5 +1,4 @@
 <?php
-
 $tr['hello'] = 'Bonjour';
 $tr['update'] = 'Mettre à jour';
 $tr['save'] = 'Sauvegarder';

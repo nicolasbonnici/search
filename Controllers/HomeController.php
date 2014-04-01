@@ -1,5 +1,4 @@
 <?php
-
 namespace bundles\search\Controllers;
 
 /**
@@ -9,15 +8,18 @@ namespace bundles\search\Controllers;
  *
  * @author niko <nicolasbonnici@gmail.com>
  */
-class HomeController extends SearchController {
+class HomeController extends SearchController
+{
 
     /**
+     *
      * @todo defined class constant pour http error codes
      */
+    public function __preDispatch()
+    {}
 
-    public function __preDispatch() {}
-
-    public function __postDispatch() {}
+    public function __postDispatch()
+    {}
 
     public function indexAction()
     {
@@ -27,13 +29,12 @@ class HomeController extends SearchController {
     public function processAction()
     {
         $this->_view['iMaxLoadCount'] = 250;
-        if (isset($this->_params['parameters']) && !empty($this->_params['parameters'])) {
+        if (isset($this->_params['parameters']) && ! empty($this->_params['parameters'])) {
             $this->process($this->_params['parameters'], 256);
         }
-
+        
         $this->render('home/process.tpl');
     }
-
 }
 
 ?>
