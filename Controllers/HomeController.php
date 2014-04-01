@@ -32,7 +32,7 @@ class HomeController extends SearchController
         if (isset($this->_params['parameters']) && ! empty($this->_params['parameters'])) {
             $this->process($this->_params['parameters'], $iMaxDepth);
         }
-
+        
         $this->render('home/process.tpl');
     }
 }

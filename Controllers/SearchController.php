@@ -31,7 +31,7 @@ class SearchController extends \Library\Core\Controller
             ), null, null);
             $this->_view['aResults'] = $oSearchModel->getResults();
         }
-
+        
         $this->render('home/process.tpl');
     }
 }

@@ -29,7 +29,7 @@ class AuthController extends \Library\Core\Auth
             ), null, ((isset($this->oUser) && $this->oUser->isLoaded()) ? $this->oUser->getId() : null));
             $this->_view['aResults'] = $oSearchModel->getResults();
         }
-
+        
         $this->render('home/process.tpl');
     }
 }
