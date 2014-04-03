@@ -25,13 +25,20 @@ class SearchController extends \Library\Core\Controller
     {
         $this->_view['iMaxLoadCount'] = $iMaxDepth;
         if (isset($sParameters) && ! empty($sParameters)) {
-            $oSearchModel = new \bundles\search\Models\Search($sParameters, array(), array(
-                0,
-                $iMaxDepth
-            ), null, null);
-            $this->_view['aResults'] = $oSearchModel->getResults();
+            // @todo try
+            try {
+                $oSearchModel = new \bundles\search\Models\Search($sParameters, array(), array(
+                    0,
+                    $iMaxDepth
+                ), 'FeedItem', null);
+                $this->_view['aResults'] = $oSearchModel->getResults();
+                $iStatus = \Library\Core\Controller::XHR_STATUS_OK;
+
+            } catch (\bundles\search\Models\SearchModelException $oException) {
+                $this->_view['aResults'] = null;
+                $iStatus = \Library\Core\Controller::XHR_STATUS_ERROR;
+            }
         }
-        
-        $this->render('home/process.tpl');
+        $this->render('home/process.tpl', $iStatus);
     }
 }
