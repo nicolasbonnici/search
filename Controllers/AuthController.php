@@ -23,13 +23,16 @@ class AuthController extends \Library\Core\Auth
     {
         $this->_view['iMaxLoadCount'] = $iMaxDepth;
         if (isset($this->_params['parameters']) && ! empty($this->_params['parameters'])) {
-            $oSearchModel = new \bundles\search\Models\Search($this->_params['parameters'], array(), array(
+            $oSearchModel = new \bundles\search\Models\Search(
+                urldecode($this->_params['parameters']),
+                array(),
+                array(
                 0,
                 $iMaxDepth
             ), null, ((isset($this->oUser) && $this->oUser->isLoaded()) ? $this->oUser->getId() : null));
             $this->_view['aResults'] = $oSearchModel->getResults();
         }
-        
+
         $this->render('home/process.tpl');
     }
 }

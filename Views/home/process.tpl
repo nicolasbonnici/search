@@ -55,7 +55,7 @@
                                 data-entity="{{sResultEntity}}" 
                                 data-idpost="{{oEntity.pk}}" 
                                 title="Plus de details">
-                                {{oEntity}}
+                                {{oEntity.title|safe|Substr : '0,30'}} [...]
                             </a> 
                         {% endfor %}
                     {% endif %}
@@ -71,7 +71,7 @@
                                 data-pk="{{oEntity.pk}}" 
                                 data-view="todo/read.tpl" 
                                 title="Plus de details">
-                                {{oEntity}}
+                                {{oEntity.label|safe|Substr : '0,30'}} [...]
                             </a> 
                         {% endfor %}
                     {% endif %}

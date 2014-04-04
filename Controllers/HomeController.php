@@ -30,9 +30,9 @@ class HomeController extends SearchController
     {
         $this->_view['iMaxLoadCount'] = $iMaxDepth;
         if (isset($this->_params['parameters']) && ! empty($this->_params['parameters'])) {
-            $this->process($this->_params['parameters'], $iMaxDepth);
+            $this->process(urldecode($this->_params['parameters']), $iMaxDepth);
         }
-        
+
         $this->render('home/process.tpl');
     }
 }
