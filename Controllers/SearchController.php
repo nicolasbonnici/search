@@ -23,7 +23,7 @@ class SearchController extends \Library\Core\Controller
 
     protected function process($sParameters, $iMaxDepth = 256)
     {
-        $this->_view['iMaxLoadCount'] = $iMaxDepth;
+        $this->aView['iMaxLoadCount'] = $iMaxDepth;
         if (isset($sParameters) && ! empty($sParameters)) {
             // @todo try
             try {
@@ -31,11 +31,11 @@ class SearchController extends \Library\Core\Controller
                     0,
                     $iMaxDepth
                 ), 'FeedItem', null);
-                $this->_view['aResults'] = $oSearchModel->getResults();
+                $this->aView['aResults'] = $oSearchModel->getResults();
                 $iStatus = \Library\Core\Controller::XHR_STATUS_OK;
 
             } catch (\bundles\search\Models\SearchModelException $oException) {
-                $this->_view['aResults'] = null;
+                $this->aView['aResults'] = null;
                 $iStatus = \Library\Core\Controller::XHR_STATUS_ERROR;
             }
         }

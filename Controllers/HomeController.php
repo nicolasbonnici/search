@@ -28,9 +28,9 @@ class HomeController extends SearchController
 
     public function processAction($iMaxDepth = 99)
     {
-        $this->_view['iMaxLoadCount'] = $iMaxDepth;
-        if (isset($this->_params['parameters']) && ! empty($this->_params['parameters'])) {
-            $this->process(urldecode($this->_params['parameters']), $iMaxDepth);
+        $this->aView['iMaxLoadCount'] = $iMaxDepth;
+        if (isset($this->aParams['parameters']) && ! empty($this->aParams['parameters'])) {
+            $this->process(urldecode($this->aParams['parameters']), $iMaxDepth);
         }
 
         $this->render('home/process.tpl');

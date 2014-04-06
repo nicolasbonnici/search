@@ -21,16 +21,16 @@ class AuthController extends \Library\Core\Auth
 
     public function processAction($iMaxDepth = 99)
     {
-        $this->_view['iMaxLoadCount'] = $iMaxDepth;
-        if (isset($this->_params['parameters']) && ! empty($this->_params['parameters'])) {
+        $this->aView['iMaxLoadCount'] = $iMaxDepth;
+        if (isset($this->aParams['parameters']) && ! empty($this->aParams['parameters'])) {
             $oSearchModel = new \bundles\search\Models\Search(
-                urldecode($this->_params['parameters']),
+                urldecode($this->aParams['parameters']),
                 array(),
                 array(
                 0,
                 $iMaxDepth
             ), null, ((isset($this->oUser) && $this->oUser->isLoaded()) ? $this->oUser->getId() : null));
-            $this->_view['aResults'] = $oSearchModel->getResults();
+            $this->aView['aResults'] = $oSearchModel->getResults();
         }
 
         $this->render('home/process.tpl');
