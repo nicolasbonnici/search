@@ -23,7 +23,7 @@ class HomeController extends SearchController
 
     public function indexAction()
     {
-        $this->render('home/index.tpl');
+        $this->oView->render($this->aView, 'home/index.tpl');
     }
 
     public function processAction($iMaxDepth = 99)
@@ -33,7 +33,7 @@ class HomeController extends SearchController
             $this->process(urldecode($this->aParams['parameters']), $iMaxDepth);
         }
 
-        $this->render('home/process.tpl');
+        $this->oView->render($this->aView, 'home/process.tpl');
     }
 }
 

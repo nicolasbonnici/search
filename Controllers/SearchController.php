@@ -39,6 +39,6 @@ class SearchController extends \Library\Core\Controller
                 $iStatus = \Library\Core\Controller::XHR_STATUS_ERROR;
             }
         }
-        $this->render('home/process.tpl', $iStatus);
+        $this->oView->render($this->aView, 'home/process.tpl', $iStatus);
     }
 }

@@ -33,7 +33,7 @@ class AuthController extends \Library\Core\Auth
             $this->aView['aResults'] = $oSearchModel->getResults();
         }
 
-        $this->render('home/process.tpl');
+        $this->oView->render($this->aView, 'home/process.tpl');
     }
 }
 
