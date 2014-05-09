@@ -21,16 +21,25 @@ class SearchController extends \Library\Core\Controller
     public function __postDispatch()
     {}
 
-    protected function process($sParameters, $iMaxDepth = 256)
+    /**
+     * Perform a search
+     *
+     * @param string $sSearch
+     * @param array $aEntities          Restrict entities scope
+     * @param array $aLimit             Array with offset and the limit of the request
+     */
+    protected function process($sSearch, array $aEntities = array(), $aLimit = array(0, 100))
     {
-        $this->aView['iMaxLoadCount'] = $iMaxDepth;
-        if (isset($sParameters) && ! empty($sParameters)) {
-            // @todo try
+        $this->aView['iMaxLoadCount'] = $aLimit[1];
+        if (isset($sSearch) && ! empty($sSearch)) {
             try {
-                $oSearchModel = new \bundles\search\Models\Search($sParameters, array(), array(
-                    0,
-                    $iMaxDepth
-                ), 'FeedItem', null);
+                $oSearchModel = new \bundles\search\Models\Search(
+                    $sSearch,
+                    array(),
+                    $aLimit,
+                    $aEntities,
+                    ((isset($this->oUser)) ? $this->oUser : null)
+                );
                 $this->aView['aResults'] = $oSearchModel->getResults();
                 $iStatus = \Library\Core\Controller::XHR_STATUS_OK;
 

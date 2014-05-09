@@ -1,13 +1,3 @@
-<div class="col-md-12">
-    <span class="pull-left">
-        <span class="text-lg"><span class="glyphicon glyphicon-search"></span> Résultats</span>
-    </span>
-    <span class="pull-right">
-        <a href="#" class="btn btn-sm btn-primary ui-pane-toggle" data-pane="west" title="Fermer ce panel">
-            <span class="glyphicon glyphicon-arrow-left"></span>
-        </a>
-    </span>
-</div>
 {% if aResults|Exists %}
 <div class="panel-group" id="accordion">
     {% for sResultEntity, oEntityCollection in aResults %} 
@@ -91,7 +81,8 @@
 </div>
 {% else %}
 <div class="col-md-12 alert alert-info">
-  <h1>Aucun résultat trouvé</h1>
-  <p>Aucun enregistrement ne correspond à votre recherche, veuiller affiner vos critères ou essayer une autres recherche.</p>
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <h1>Aucun résultat trouvé</h1>
+    <p>Aucun enregistrement ne correspond à votre recherche, veuiller affiner vos critères ou essayer une autres recherche.</p>
 </div>
 {% endif %}

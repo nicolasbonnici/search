@@ -23,17 +23,15 @@ class HomeController extends SearchController
 
     public function indexAction()
     {
+        $this->aView['aEntities'] = \Library\Core\App::buildEntities();
         $this->oView->render($this->aView, 'home/index.tpl');
     }
 
-    public function processAction($iMaxDepth = 99)
+    public function processAction()
     {
-        $this->aView['iMaxLoadCount'] = $iMaxDepth;
         if (isset($this->aParams['parameters']) && ! empty($this->aParams['parameters'])) {
-            $this->process(urldecode($this->aParams['parameters']), $iMaxDepth);
+            $this->process(urldecode($this->aParams['parameters']));
         }
-
-        $this->oView->render($this->aView, 'home/process.tpl');
     }
 }
 
