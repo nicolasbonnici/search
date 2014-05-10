@@ -67,7 +67,7 @@ $(document).ready(function() {
             </div>
         </div>
         <div id="dashboard" class="col-md-12">
-            <form id="search-form" class="form-horizontal" method="post" action="/search/home/process" data-sendform-reponse-selector="#search-results">
+            <form id="search-form" class="form-horizontal asynchSendOnSubmit" method="post" action="/search/home/process" data-sendform-reponse-selector="#search-results">
                 <fieldset>
                 
                 <div class="form-group">

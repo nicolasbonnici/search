@@ -10,6 +10,17 @@ namespace bundles\search\Controllers;
  */
 class SearchController extends \Library\Core\Controller
 {
+    /**
+     * Restricted entities scope when no user logged
+     * If a valid user session is found this array is overwrited by \Library\Core\App::buildEntities()
+     * @var array
+     */
+    protected $aEntitiesScope = array(
+    	'FeedItem',
+    	'Tag',
+    	'Category',
+    	'Post'
+    );
 
     /**
      *
@@ -38,7 +49,7 @@ class SearchController extends \Library\Core\Controller
                     array(),
                     $aLimit,
                     $aEntities,
-                    ((isset($this->oUser)) ? $this->oUser : null)
+                    (($this->isValidUserLogged()) ? $this->oUser : null)
                 );
                 $this->aView['aResults'] = $oSearchModel->getResults();
                 $iStatus = \Library\Core\Controller::XHR_STATUS_OK;
