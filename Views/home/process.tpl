@@ -19,59 +19,11 @@
                 class="panel-collapse collapse">
                 <div class="panel-body">
                     <div class="list-group">
-                    {% if sResultEntity === 'FeedItem' %}
-                        {% set bHandled = 1 %}
-                        {% for oEntity in oEntityCollection %}
-                            <a href="#modal" 
-                                class="btn btn-link ui-sendxhr list-group-item" 
-                                data-selector="#modal-content" 
-                                data-toggle="modal"
-                                data-url="/frontend/activities/read/" 
-                                data-entity="{{sResultEntity}}" 
-                                data-pk="{{oEntity.pk}}" 
-                                title="Plus de details">
-                                {{oEntity.title|safe|Substr : '0,30'}} [...]
-                            </a> 
-                        {% endfor %}
-                    {% endif %}
-                    {% if sResultEntity === 'Post' %}
-                        {% set bHandled = 1 %}
-                        {% for oEntity in oEntityCollection %}
-                            <a href="#modal" 
-                                class="btn btn-link ui-sendxhr list-group-item" 
-                                data-selector="#modal-content" 
-                                data-toggle="modal"
-                                data-url="/blog/posts/read/" 
-                                data-entity="{{sResultEntity}}" 
-                                data-idpost="{{oEntity.pk}}" 
-                                title="Plus de details">
-                                {{oEntity.title|safe|Substr : '0,30'}} [...]
-                            </a> 
-                        {% endfor %}
-                    {% endif %}
-                    {% if sResultEntity === 'Todo' %}
-                        {% set bHandled = 1 %}
-                        {% for oEntity in oEntityCollection %}
-                            <a href="#modal" 
-                                class="btn btn-link ui-sendxhr list-group-item" 
-                                data-selector="#modal-content" 
-                                data-toggle="modal"
-                                data-url="/crud/read/" 
-                                data-entity="{{sResultEntity}}" 
-                                data-pk="{{oEntity.pk}}" 
-                                data-view="todo/read.tpl" 
-                                title="Plus de details">
-                                {{oEntity.label|safe|Substr : '0,30'}} [...]
-                            </a> 
-                        {% endfor %}
-                    {% endif %}
-                    {% if bHandled === 0 %}
                         {% for oEntity in oEntityCollection %}
                             <a href="#" class="list-group-item" data-entity="{{sResultEntity}}" data-view="" title="Plus de details">
                                 {{oEntity}}
                             </a> 
                         {% endfor %}
-                    {% endif %}
                     </div>
                 </div>
             </div>

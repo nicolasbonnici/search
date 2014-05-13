@@ -92,7 +92,7 @@ $(document).ready(function() {
                 <div class="form-group">
                   <label class="col-md-4 control-label" for="entities">Entities</label>
                   <div class="col-md-5">
-                    <select id="entities" name="entities" class="form-control" multiple="multiple">
+                    <select id="entities" name="entities[]" class="form-control" multiple="multiple">
                     {% if aEntities|Exists %}
                         {% for sEntity in aEntities %}
                         <option value="{{sEntity}}" selected="selected">{{sEntity}}</option>

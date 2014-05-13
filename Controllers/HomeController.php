@@ -33,10 +33,8 @@ class HomeController extends SearchController
 
     public function processAction()
     {
-        if (isset($this->aParams['parameters']) && ! empty($this->aParams['parameters'])) {
-            $oParameters = new \Library\Core\Json($this->aParams['parameters']);
-            die(var_dump($oParameters->get('search'), $oParameters->get('entities')));
-            $this->process($this->aParams['search'], $this->aParams['parameters']);
+        if (isset($this->aParams['parameters']['search'], $this->aParams['parameters']['entities']) && ! empty($this->aParams['parameters']['search'])) {
+            $this->process($this->aParams['parameters']['search'], $this->aParams['parameters']['entities']);
         }
     }
 }
