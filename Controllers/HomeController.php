@@ -1,6 +1,7 @@
 <?php
 namespace bundles\search\Controllers;
 
+use bundles\search\Models\SearchModelException;
 /**
  * ErrorController
  *
@@ -34,9 +35,17 @@ class HomeController extends SearchController
     public function processAction()
     {
         if (isset($this->aParams['parameters']['search'], $this->aParams['parameters']['entities']) && ! empty($this->aParams['parameters']['search'])) {
+            foreach ($this->aParams['parameters']['entities'] as $sEntity) {
+                if (! $this->isValidUserLogged() && ! in_array($sEntity, $this->aEntitiesScope)) {
+                    throw new SearchModelException('Illegal entity requested', 403);
+                    exit;
+                }
+            }
             $this->process($this->aParams['parameters']['search'], $this->aParams['parameters']['entities']);
         }
     }
 }
 
-?>
+class SearchControllerException extends \Exception
+{
+}
