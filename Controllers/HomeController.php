@@ -35,12 +35,17 @@ class HomeController extends SearchController
     public function processAction()
     {
         if (isset($this->aParams['parameters']['search'], $this->aParams['parameters']['entities']) && ! empty($this->aParams['parameters']['search'])) {
-            foreach ($this->aParams['parameters']['entities'] as $sEntity) {
-                if (! $this->isValidUserLogged() && ! in_array($sEntity, $this->aEntitiesScope)) {
-                    throw new SearchModelException('Illegal entity requested', 403);
-                    exit;
+            if (is_array($this->aParams['parameters']['entities'])) {
+                foreach ($this->aParams['parameters']['entities'] as $sEntity) {
+                    if (! $this->isValidUserLogged() && ! in_array($sEntity, $this->aEntitiesScope)) {
+                        throw new SearchModelException('Illegal entity requested', 403);
+                        exit;
+                    }
                 }
+            } else {
+                $this->aParams['parameters']['entities'] = $this->aEntitiesScope;
             }
+
             $this->process($this->aParams['parameters']['search'], $this->aParams['parameters']['entities']);
         }
     }
