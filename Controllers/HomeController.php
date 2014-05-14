@@ -43,7 +43,7 @@ class HomeController extends SearchController
                     }
                 }
             } else {
-                $this->aParams['parameters']['entities'] = $this->aEntitiesScope;
+                $this->aParams['parameters']['entities'] = null;
             }
 
             $this->process($this->aParams['parameters']['search'], $this->aParams['parameters']['entities']);

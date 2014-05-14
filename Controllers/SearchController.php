@@ -39,7 +39,7 @@ class SearchController extends \Library\Core\Controller
      * @param array $aEntities          Restrict entities scope
      * @param array $aLimit             Array with offset and the limit of the request
      */
-    protected function process($sSearch, array $aEntities = array(), $aLimit = array(0, 50))
+    protected function process($sSearch, $aEntities = null, array $aLimit = array(0, 50))
     {
         $this->aView['iMaxLoadCount'] = $aLimit[1];
         if (isset($sSearch) && ! empty($sSearch)) {
