@@ -20,9 +20,10 @@
                 <div class="panel-body">
                     <div class="list-group">
                         {% for oEntity in oEntityCollection %}
-                            <a href="#" class="list-group-item" data-entity="{{sResultEntity}}" data-view="" title="Plus de details">
-                                {{oEntity}}
-                            </a> 
+                            <a href="#modal" class="list-group-item ui-sendxhr" data-url="/crud/read/"
+                                data-selector="#modal-content" data-entity="{{sResultEntity}}" data-toggle="modal"
+                                data-pk="{{oEntity.pk}}" title="{{tr['view']}}"> <span class="glyphicon glyphicon-zoom-in"></span> Consulter {{oEntity}}
+                            </a>
                         {% endfor %}
                     </div>
                 </div>
