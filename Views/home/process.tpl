@@ -20,7 +20,7 @@
                 <div class="panel-body">
                     <div class="list-group">
                         {% for oEntity in oEntityCollection %}
-                            <a href="#modal" class="list-group-item ui-sendxhr" data-url="/crud/read/"
+                            <a href="#modal" class="list-group-item ui-sendxhr" data-url="/crud/{% if aSession|Exists %}read/{% else %}public/read/{% endif %}"
                                 data-selector="#modal-content" data-entity="{{sResultEntity}}" data-toggle="modal"
                                 data-pk="{{oEntity.pk}}" title="{{tr['view']}}"> <span class="glyphicon glyphicon-zoom-in"></span> Consulter {{oEntity}}
                             </a>
