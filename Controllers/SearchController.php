@@ -15,7 +15,7 @@ class SearchController extends \Library\Core\Controller
      * If a valid user session is found this array is overwrited by \Library\Core\App::buildEntities()
      * @var array
      */
-    protected $aEntitiesScope = array(
+    protected $aPublicEntitiesScope = array(
     	'FeedItem',
     	'Tag',
     	'Category',

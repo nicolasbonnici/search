@@ -27,25 +27,29 @@ class HomeController extends SearchController
         if ($this->isValidUserLogged()) {
             $this->aView['aEntities'] = \Library\Core\App::buildEntities();
         } else {
-            $this->aView['aEntities'] = $this->aEntitiesScope;
+            $this->aView['aEntities'] = $this->aPublicEntitiesScope;
         }
         $this->oView->render($this->aView, 'home/index.tpl');
     }
 
     public function processAction()
     {
-        if (isset($this->aParams['parameters']['search'], $this->aParams['parameters']['entities']) && ! empty($this->aParams['parameters']['search'])) {
-            if (is_array($this->aParams['parameters']['entities'])) {
+        if (!isset($this->aParams['parameters']['search']) || empty($this->aParams['parameters']['search'])) {
+            throw new SearchModelException('Illegal entity requested', 403);
+            exit;
+        } else {
+            if (isset($this->aParams['parameters']['entities']) && is_array($this->aParams['parameters']['entities']) ) {
+
                 foreach ($this->aParams['parameters']['entities'] as $sEntity) {
-                    if (! $this->isValidUserLogged() && ! in_array($sEntity, $this->aEntitiesScope)) {
+                    if (! $this->isValidUserLogged() && ! in_array($sEntity, $this->aPublicEntitiesScope)) {
                         throw new SearchModelException('Illegal entity requested', 403);
                         exit;
                     }
                 }
-            } else {
-                $this->aParams['parameters']['entities'] = null;
-            }
 
+            } else {
+                $this->aParams['parameters']['entities'] = (($this->isValidUserLogged()) ? null : $this->aPublicEntitiesScope);
+            }
             $this->process($this->aParams['parameters']['search'], $this->aParams['parameters']['entities']);
         }
     }
