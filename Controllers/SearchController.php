@@ -62,3 +62,7 @@ class SearchController extends \Library\Core\Controller
         $this->oView->render($this->aView, 'home/process.tpl', $iStatus);
     }
 }
+
+class SearchControllerException extends \Exception
+{
+}

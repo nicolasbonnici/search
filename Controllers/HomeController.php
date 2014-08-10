@@ -35,14 +35,14 @@ class HomeController extends SearchController
     public function processAction()
     {
         if (!isset($this->aParams['parameters']['search']) || empty($this->aParams['parameters']['search'])) {
-            throw new SearchModelException('Illegal entity requested', 403);
+            throw new SearchControllerException('Illegal entity requested', 403);
             exit;
         } else {
             if (isset($this->aParams['parameters']['entities']) && is_array($this->aParams['parameters']['entities']) ) {
 
                 foreach ($this->aParams['parameters']['entities'] as $sEntity) {
                     if (! $this->isValidUserLogged() && ! in_array($sEntity, $this->aPublicEntitiesScope)) {
-                        throw new SearchModelException('Illegal entity requested', 403);
+                        throw new SearchControllerException('Illegal entity requested', 403);
                         exit;
                     }
                 }
@@ -55,6 +55,4 @@ class HomeController extends SearchController
     }
 }
 
-class SearchControllerException extends \Exception
-{
-}
+
